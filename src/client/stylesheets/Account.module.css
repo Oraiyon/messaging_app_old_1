@@ -1,0 +1,112 @@
+.account_container {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  height: 100%;
+  padding: 0.25em;
+}
+
+.account_container label {
+  display: none;
+}
+
+.edits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  gap: 0.25em;
+  padding-bottom: 0.25em;
+}
+
+.edits > form {
+  justify-self: flex-start;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.edit_name_inputs {
+  display: flex;
+  grid-row: 2;
+  justify-self: flex-start;
+}
+
+.edit_name_inputs > button {
+  height: fit-content;
+}
+
+.edits > h3 {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.default_picture_button {
+  grid-column: 1;
+  justify-self: flex-start;
+}
+
+.cancel_edit_name,
+.new_name,
+.submit_name,
+.username_taken_warning {
+  display: none;
+}
+
+.new_name {
+  margin: 0 0.25em;
+}
+
+.submit_name {
+  margin-left: 0.25em;
+}
+
+.username_taken_warning {
+  color: red;
+  padding-left: 0.25em;
+}
+
+.preview_profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.friendsList_account {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  height: 100%;
+}
+
+.friend_account {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.25em 0.25em 0;
+}
+
+.friend_account > div {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: white;
+  padding: 0.25em;
+  border: none;
+  border-radius: 0.25em;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: var(--highlight-color);
+  color: white;
+}
+
+.friends_list {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  height: 100%;
+}
