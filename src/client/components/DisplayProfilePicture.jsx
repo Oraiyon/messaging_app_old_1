@@ -50,14 +50,14 @@ const DisplayProfilePicture = (props) => {
   // Make profile.picture default to default pic?
   if (props.profile.picture) {
     return (
-      <div className={styles.user_profile_picture_container}>
+      <div className={styles.profile_picture_container}>
         <ProfilePictureForm />
         <img
           src={props.profile.picture}
           alt="Profile Picture"
-          title="Change Profile Picture"
+          title={props.user ? "Change Profile Picture" : ""}
           className={props.user ? styles.user_profile_picture : styles.profile_picture}
-          onClick={() => displayEditPicture(form)}
+          // onClick={() => displayEditPicture(form)}
           onMouseOver={() => displayEditPicture(editPictureIcon)}
           onMouseOut={() => displayEditPicture(editPictureIcon)}
         />
@@ -70,13 +70,22 @@ const DisplayProfilePicture = (props) => {
     );
   } else {
     return (
-      <div className={styles.default_profile_picture_container}>
+      <div className={styles.profile_picture_container}>
         <ProfilePictureForm />
+        <div className={styles.default_profile_picture}>
+          <Icon
+            path={mdiAccountCircle}
+            className={props.user ? styles.user_profile_picture : styles.profile_picture}
+            title="Change Profile Picture"
+            // onClick={() => displayEditPicture(form)}
+            onMouseOver={() => displayEditPicture(editPictureIcon)}
+            onMouseOut={() => displayEditPicture(editPictureIcon)}
+          />
+        </div>
         <Icon
-          path={mdiAccountCircle}
-          className={props.user ? styles.user_profile_picture : styles.profile_picture}
-          title="Change Profile Picture"
-          onClick={() => displayEditPicture(form)}
+          path={mdiPencilCircleOutline}
+          className={styles.edit_picture_icon}
+          ref={editPictureIcon}
         />
       </div>
     );

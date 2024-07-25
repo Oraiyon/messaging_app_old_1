@@ -10,30 +10,29 @@
   border-radius: 50%;
 }
 
-.default_profile_picture_container {
+.default_profile_picture {
   display: flex;
   align-items: center;
 }
 
-.default_profile_picture_container > svg {
+.default_profile_picture > svg:first-of-type {
   border: 1px solid white;
   border-radius: 50%;
 }
 
-.user_profile_picture_container,
-.default_profile_picture_container {
+.profile_picture_container {
   grid-column: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  /* position: relative; */
 }
 
-.user_profile_picture_container > form {
+.profile_picture_container > form {
   display: none;
 }
 
 .edit_picture_icon {
   display: none;
-  position: absolute;
+  /* position: absolute; */
 }
