@@ -173,11 +173,6 @@ const Account = () => {
       />
       <div className={styles.account_container}>
         <div className={styles.edits}>
-          {/* <form action="" onSubmit={changeProfilePicture}>
-            <label htmlFor="picture">Edit Profile Picture</label>
-            <input type="file" name="picture" id="picture" ref={form} />
-            <button>Submit</button>
-          </form> */}
           <SetToDefaultPicture />
           <div className={styles.edit_name_inputs}>
             <button

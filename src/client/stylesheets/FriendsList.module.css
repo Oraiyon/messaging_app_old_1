@@ -34,7 +34,7 @@
   pointer-events: none;
 }
 
-.current_chat > div > svg {
+.current_chat > div > div > svg {
   border-color: black;
 }
 
