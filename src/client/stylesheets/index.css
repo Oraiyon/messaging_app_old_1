@@ -50,3 +50,13 @@ input[type="password"] {
   padding: 0.25em;
   border: none;
 }
+
+/* Found in DisplayProfilePicture.jsx */
+/* styles.CLASSNAME did not work */
+.user_picture_container {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}

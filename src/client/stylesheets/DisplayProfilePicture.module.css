@@ -25,7 +25,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* position: relative; */
 }
 
 .profile_picture_container > form {
@@ -34,5 +33,8 @@
 
 .edit_picture_icon {
   display: none;
-  /* position: absolute; */
+  position: absolute;
+  stroke: black;
+  stroke-width: 0.25px;
+  color: var(--highlight-color);
 }

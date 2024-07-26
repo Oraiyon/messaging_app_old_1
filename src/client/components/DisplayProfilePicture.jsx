@@ -50,16 +50,18 @@ const DisplayProfilePicture = (props) => {
   // Make profile.picture default to default pic?
   if (props.profile.picture) {
     return (
-      <div className={styles.profile_picture_container}>
-        <ProfilePictureForm />
+      <div
+        className={props.user ? "user_picture_container" : styles.profile_picture_container}
+        // onClick={() => displayEditPicture(form)}
+        onMouseOver={() => displayEditPicture(editPictureIcon)}
+        onMouseOut={() => displayEditPicture(editPictureIcon)}
+      >
+        {/* <ProfilePictureForm /> */}
         <img
           src={props.profile.picture}
           alt="Profile Picture"
           title={props.user ? "Change Profile Picture" : ""}
           className={props.user ? styles.user_profile_picture : styles.profile_picture}
-          // onClick={() => displayEditPicture(form)}
-          onMouseOver={() => displayEditPicture(editPictureIcon)}
-          onMouseOut={() => displayEditPicture(editPictureIcon)}
         />
         <Icon
           path={mdiPencilCircleOutline}
@@ -70,16 +72,18 @@ const DisplayProfilePicture = (props) => {
     );
   } else {
     return (
-      <div className={styles.profile_picture_container}>
-        <ProfilePictureForm />
+      <div
+        className={props.user ? "user_picture_container" : styles.profile_picture_container}
+        // onClick={() => displayEditPicture(form)}
+        onMouseOver={() => displayEditPicture(editPictureIcon)}
+        onMouseOut={() => displayEditPicture(editPictureIcon)}
+      >
+        {/* <ProfilePictureForm /> */}
         <div className={styles.default_profile_picture}>
           <Icon
             path={mdiAccountCircle}
             className={props.user ? styles.user_profile_picture : styles.profile_picture}
             title="Change Profile Picture"
-            // onClick={() => displayEditPicture(form)}
-            onMouseOver={() => displayEditPicture(editPictureIcon)}
-            onMouseOut={() => displayEditPicture(editPictureIcon)}
           />
         </div>
         <Icon
