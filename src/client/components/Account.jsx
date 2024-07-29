@@ -176,7 +176,7 @@ const Account = () => {
           <DisplayProfilePicture profile={user} user={true} formRef={formRef} />
           <div className={styles.edits}>
             <div className={styles.edit_name_inputs}>
-              <label htmlFor="editName">Edit Name:</label>
+              <label htmlFor="editName">Edit Username:</label>
               <input
                 type="text"
                 id="editName"
