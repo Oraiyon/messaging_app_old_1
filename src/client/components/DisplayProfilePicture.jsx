@@ -4,26 +4,7 @@ import styles from "../stylesheets/DisplayProfilePicture.module.css";
 import { useRef } from "react";
 
 const DisplayProfilePicture = (props) => {
-  const formRef = useRef(null);
   const editPictureIconRef = useRef(null);
-
-  const changeProfilePicture = async (e) => {
-    try {
-      e.preventDefault();
-      if (formRef.current.value) {
-        const formData = new FormData();
-        formData.append("file", formRef.current.files[0]);
-        const fetchUser = await fetch(`/api/${user._id}/profile/account/picture`, {
-          method: "POST",
-          body: formData
-        });
-        const data = await fetchUser.json();
-        setUser(data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const displayEditPictureRef = (ref) => {
     if (props.user) {
@@ -36,31 +17,13 @@ const DisplayProfilePicture = (props) => {
   };
 
   const openPictureForm = () => {
-    formRef.current.children[1].click();
-  };
-
-  const ProfilePictureForm = () => {
-    if (props.user) {
-      return (
-        <form
-          action=""
-          onSubmit={changeProfilePicture}
-          ref={formRef}
-          className={styles.profile_picture_form}
-        >
-          <label htmlFor="picture">Edit Profile Picture</label>
-          <input type="file" name="picture" id="picture" />
-          <button>Submit</button>
-        </form>
-      );
-    }
+    props.formRef.current.children[1].click();
   };
 
   // Make profile.picture default to default pic?
   if (props.profile.picture) {
     return (
       <>
-        <ProfilePictureForm />
         <div
           className={props.user ? "user_picture_container" : styles.profile_picture_container}
           onClick={openPictureForm}
@@ -84,7 +47,6 @@ const DisplayProfilePicture = (props) => {
   } else {
     return (
       <>
-        <ProfilePictureForm />
         <div
           className={props.user ? "user_picture_container" : styles.profile_picture_container}
           onClick={openPictureForm}

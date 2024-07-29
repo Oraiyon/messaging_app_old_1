@@ -20,29 +20,11 @@ const Account = () => {
 
   const [searchedFriend, setSearchedFriend] = useState(null);
 
-  const cancelEditNameButton = useRef(null);
   const editName = useRef(null);
-  const editNameButton = useRef(null);
   const submitNameButton = useRef(null);
   const invalidUsername = useRef(null);
   const friendsList = useRef(null);
-  // const form = useRef(null);
-
-  const displayEditName = () => {
-    if (!editName.current.style.display || editName.current.style.display === "none") {
-      cancelEditNameButton.current.style.display = "flex";
-      editName.current.style.display = "flex";
-      editNameButton.current.style.display = "none";
-      submitNameButton.current.style.display = "flex";
-    } else {
-      cancelEditNameButton.current.style.display = "none";
-      editName.current.style.display = "none";
-      editName.current.value = "";
-      editNameButton.current.style.display = "flex";
-      submitNameButton.current.style.display = "none";
-      invalidUsername.current.style.display = "none";
-    }
-  };
+  const formRef = useRef(null);
 
   const submitEditName = async () => {
     if (!editName.current.value || editName.current.value.length < 3) {
@@ -57,7 +39,7 @@ const Account = () => {
     const res = await fetchUser.json();
     if (res) {
       setUser(res);
-      displayEditName();
+      // displayEditName();
     } else {
       invalidUsername.current.style.display = "flex";
     }
@@ -120,23 +102,23 @@ const Account = () => {
     }
   };
 
-  // const changeProfilePicture = async (e) => {
-  //   try {
-  //     e.preventDefault();
-  //     if (form.current.value) {
-  //       const formData = new FormData();
-  //       formData.append("file", form.current.files[0]);
-  //       const fetchUser = await fetch(`/api/${user._id}/profile/account/picture`, {
-  //         method: "POST",
-  //         body: formData
-  //       });
-  //       const data = await fetchUser.json();
-  //       setUser(data);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const changeProfilePicture = async (e) => {
+    try {
+      e.preventDefault();
+      if (formRef.current.children[1].value) {
+        const formData = new FormData();
+        formData.append("file", formRef.current.children[1].files[0]);
+        const fetchUser = await fetch(`/api/${user._id}/profile/account/picture`, {
+          method: "POST",
+          body: formData
+        });
+        const data = await fetchUser.json();
+        setUser(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const setProfilePictureToDefault = async () => {
     try {
@@ -155,9 +137,26 @@ const Account = () => {
   const SetToDefaultPicture = () => {
     if (user.picture) {
       return (
-        <button className={styles.default_picture_button} onClick={setProfilePictureToDefault}>
-          Set Picture To Default
-        </button>
+        <div className={styles.default_picture_button}>
+          <button onClick={setProfilePictureToDefault}>Set Picture To Default</button>
+        </div>
+      );
+    }
+  };
+
+  const ProfilePictureForm = () => {
+    if (user) {
+      return (
+        <form
+          action=""
+          onSubmit={changeProfilePicture}
+          ref={formRef}
+          className={styles.profile_picture_form}
+        >
+          <label htmlFor="picture">Edit Profile Picture</label>
+          <input type="file" name="picture" id="picture" />
+          <button>Submit</button>
+        </form>
       );
     }
   };
@@ -172,17 +171,11 @@ const Account = () => {
         sidebarContainer={sidebarContainer}
       />
       <div className={styles.account_container}>
-        <div className={styles.edits}>
-          <SetToDefaultPicture />
-          <div className={styles.edit_name_inputs}>
-            <button
-              onClick={displayEditName}
-              className={styles.cancel_edit_name}
-              ref={cancelEditNameButton}
-            >
-              Cancel
-            </button>
-            <div>
+        <div className={styles.account_info}>
+          <h3>{user.username}</h3>
+          <DisplayProfilePicture profile={user} user={true} formRef={formRef} />
+          <div className={styles.edits}>
+            <div className={styles.edit_name_inputs}>
               <label htmlFor="editName">Edit Name</label>
               <input
                 type="text"
@@ -195,16 +188,17 @@ const Account = () => {
               <p className={styles.username_taken_warning} ref={invalidUsername}>
                 Invalid username
               </p>
+              <button
+                onClick={submitEditName}
+                className={styles.submit_name}
+                ref={submitNameButton}
+              >
+                Submit
+              </button>
             </div>
-            <button onClick={displayEditName} ref={editNameButton}>
-              Edit Name
-            </button>
-            <button onClick={submitEditName} className={styles.submit_name} ref={submitNameButton}>
-              Submit
-            </button>
+            <ProfilePictureForm />
+            <SetToDefaultPicture />
           </div>
-          <DisplayProfilePicture profile={user} user={true} />
-          <h3>{user.username}</h3>
         </div>
         <div className={styles.friendsList_account}>
           <label htmlFor="searchFriend">Search Friend</label>

@@ -26,7 +26,8 @@
   background-color: var(--highlight-color);
 }
 
-.sidebar > div > img {
+.sidebar > div > img,
+.sidebar > div > div > svg {
   align-self: center;
   width: 75px;
   height: 75px;
