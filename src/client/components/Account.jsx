@@ -153,7 +153,7 @@ const Account = () => {
           ref={formRef}
           className={styles.profile_picture_form}
         >
-          <label htmlFor="picture">Edit Profile Picture</label>
+          <label htmlFor="picture">Edit Profile Picture:</label>
           <input type="file" name="picture" id="picture" />
           <button>Submit</button>
         </form>
@@ -176,7 +176,7 @@ const Account = () => {
           <DisplayProfilePicture profile={user} user={true} formRef={formRef} />
           <div className={styles.edits}>
             <div className={styles.edit_name_inputs}>
-              <label htmlFor="editName">Edit Name</label>
+              <label htmlFor="editName">Edit Name:</label>
               <input
                 type="text"
                 id="editName"
